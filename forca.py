@@ -2,11 +2,18 @@ import random
 
 def apresentacao():
     print("*********************************")
-    print("***Bem vindo ao jogo da Forca!***")
+    print("** Bem vindo ao jogo da Forca! **")
     print("*********************************")
 
+    print('Escolha uma lista da sua preferência:')
+    print('( 1 ) Animais')
+    print('( 2 ) Frutas')
+    print('( 3 ) Estados')
+    print('( 4 ) Países')
+    print('( 5 ) Misto')
 
-def lista_palavras(nome_arquivo='palavras.txt'):
+
+def lista_palavras(nome_arquivo='./listas/misto.txt'):
     arquivo = open(nome_arquivo, 'r')
     palavras = []
 
@@ -127,7 +134,22 @@ def desenha_forca(erros):
 def jogar():
     apresentacao()
 
-    palavra_secreta = lista_palavras('frutas.txt')
+    pergunta_lista = int(input('Qual lista você prefere? '))
+
+    if (pergunta_lista == 1):
+        escolha_lista = './listas/animais.txt'
+    elif (pergunta_lista == 2):
+        escolha_lista = './listas/frutas.txt'
+    elif (pergunta_lista == 3):
+        escolha_lista = './listas/estados.txt'
+    elif (pergunta_lista == 4):
+        escolha_lista = './listas/paises.txt'
+    elif (pergunta_lista == 5):
+        escolha_lista = './listas/misto.txt'
+
+    print(f'Você escolheu a lista {escolha_lista}. Boa sorte!')
+
+    palavra_secreta = lista_palavras(escolha_lista)
     letras_acertadas = inicio_forca(palavra_secreta) # coloca '_' para cada letra da palavra gerada
 
     print(letras_acertadas)
